@@ -1,0 +1,12 @@
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\BuildingMonitor.dll
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\BuildingMonitor.pdb
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\Akka.dll
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\Newtonsoft.Json.dll
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\System.Collections.Immutable.dll
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\Akka.xml
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\Newtonsoft.Json.xml
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\bin\Debug\System.Collections.Immutable.xml
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.csproj.CoreCompileInputs.cache
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.csproj.CopyComplete
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.dll
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.pdb
