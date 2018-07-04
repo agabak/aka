@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,12 +32,21 @@ namespace BuildingMonitor.Actors
                     {
                         var newSensorActor = Context.ActorOf
                         (TemperatureSensor.Props(_floorId, m.SensorId), $"temperature-sensor-{m.SensorId}");
+
+                        Context.Watch(newSensorActor);
+
                         _sensorIdToActorRefMap.Add(m.SensorId, newSensorActor);
                         newSensorActor.Forward(m);
                     }
                     break;
                 case RequestTemperatureSensorIds m:
-                    Sender.Tell((new RespondTemperatureSensorIds(m.RequestId, new HashSet<string>(_sensorIdToActorRefMap.Keys))));
+                    Sender.Tell((new RespondTemperatureSensorIds(m.RequestId,
+                                                                 ImmutableHashSet.CreateRange(_sensorIdToActorRefMap.Keys))));
+                    break;
+                case Terminated m:
+                    var teminatedTemperatureSensorId =
+                        _sensorIdToActorRefMap.First(x => x.Value == m.ActorRef).Key;
+                    _sensorIdToActorRefMap.Remove(teminatedTemperatureSensorId);
                     break;
                 default:
                     Unhandled(message);

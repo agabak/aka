@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actors\Floor.cs" />
+    <Compile Include="Actors\FloorsManager.cs" />
     <Compile Include="Actors\TemperatureSensor.cs" />
+    <Compile Include="Messages\RequestFloorIds.cs" />
     <Compile Include="Messages\RequestMetadata.cs" />
     <Compile Include="Messages\RequestRegisterTemperatureSensor.cs" />
     <Compile Include="Messages\RequestTemperatureSensorIds.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="Messages\RespondTemperatureSensorIds.cs" />
     <Compile Include="Messages\RespondTemperatureUpdated.cs" />
     <Compile Include="Messages\RespondTempeture.cs" />
+    <Compile Include="Messages\ResponsedFloorIds.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

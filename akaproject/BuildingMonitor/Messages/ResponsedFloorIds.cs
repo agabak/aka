@@ -2,17 +2,16 @@
 
 namespace BuildingMonitor.Messages
 {
-    public sealed class RespondTemperatureSensorIds
+    public sealed class ResponsedFloorIds
     {
         public long RequestId { get; }
-        public IImmutableSet<string> Ids { get; }
+        public ImmutableHashSet<string> Ids { get; }
 
-        public RespondTemperatureSensorIds(long requestId, IImmutableSet<string> ids)
+        public ResponsedFloorIds(long requestId, ImmutableHashSet<string> ids)
         {
             RequestId = requestId;
             Ids = ids;
         }
-            
+
     }
 }
- 

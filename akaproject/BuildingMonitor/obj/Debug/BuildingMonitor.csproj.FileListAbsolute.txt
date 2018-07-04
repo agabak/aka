@@ -22,3 +22,4 @@ C:\dev\c#\aka\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.csproj.CoreCo
 C:\dev\c#\aka\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.dll
 C:\dev\c#\aka\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.pdb
 C:\dev\c#\aka\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.csprojResolveAssemblyReference.cache
+C:\dev\c#\akaproject\akaproject\BuildingMonitor\obj\Debug\BuildingMonitor.csprojResolveAssemblyReference.cache

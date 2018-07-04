@@ -62,5 +62,63 @@ namespace BuilingMonitor.Test
             Assert.IsType<RequestRegisterTemperatureSensor>(unhundle.Message);
             Assert.Equal(foor, unhundle.Recipient);
         }
+
+        [Fact]
+        public void ReturnAllTemperatureSensorsIds()
+        {
+            var probe = CreateTestProbe();
+            var floor = Sys.ActorOf(Floor.Props("a"));
+
+            floor.Tell(new RequestRegisterTemperatureSensor(1,"a","42"),probe.Ref);
+            probe.ExpectMsg<RespondSensorRegistered>();
+
+            floor.Tell(new RequestRegisterTemperatureSensor(2,"a","90"),probe.Ref);
+            probe.ExpectMsg<RespondSensorRegistered>();
+
+            floor.Tell(new RequestTemperatureSensorIds(1),probe.Ref);
+            var response = probe.ExpectMsg<RespondTemperatureSensorIds>();
+
+            Assert.Equal(2,response.Ids.Count);
+            Assert.Contains("42", response.Ids);
+            Assert.Contains("90", response.Ids);
+        }
+
+        [Fact]
+        public void ReturnEmptyListOfTemperatureSensorsIdsIfNoneExists()
+        {
+            var probe = CreateTestProbe();
+            var floor = Sys.ActorOf(Floor.Props("a"));
+
+            floor.Tell(new RequestTemperatureSensorIds(1), probe.Ref);
+            var response = probe.ExpectMsg<RespondTemperatureSensorIds>();
+
+            Assert.Equal(0, response.Ids.Count);
+        }
+
+        [Fact]
+        public void ReturnTemperatureSensorsIdsOnlyFromActiveActors()
+        {
+            var probe = CreateTestProbe();
+            var floor = Sys.ActorOf(Floor.Props("a"));
+
+            floor.Tell(new RequestRegisterTemperatureSensor(1,"a","42"),probe.Ref);
+            probe.ExpectMsg<RespondSensorRegistered>();
+            var firstSensorAdded = probe.LastSender;
+
+            floor.Tell(new RequestRegisterTemperatureSensor(2, "a", "90"), probe.Ref);
+            probe.ExpectMsg<RespondSensorRegistered>();
+            var secondSensorAdded = probe.LastSender;
+
+            // stop one of the actor
+            probe.Watch(firstSensorAdded);
+            firstSensorAdded.Tell(PoisonPill.Instance);
+            probe.ExpectTerminated(firstSensorAdded);
+
+            floor.Tell(new RequestTemperatureSensorIds(1), probe.Ref);
+            var response = probe.ExpectMsg<RespondTemperatureSensorIds>();
+
+            Assert.Equal(1, response.Ids.Count);
+            Assert.Contains("90", response.Ids);
+        }
     }
 }
