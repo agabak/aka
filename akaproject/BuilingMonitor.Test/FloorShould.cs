@@ -119,6 +119,7 @@ namespace BuilingMonitor.Test
 
             Assert.Equal(1, response.Ids.Count);
             Assert.Contains("90", response.Ids);
+            Assert.Single(response.Ids);
         }
     }
 }

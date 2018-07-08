@@ -25,10 +25,8 @@ namespace BuildingMonitor.Actors
                     else
                     {
                         var newSensorActor = Context.ActorOf(Floor.Props(m.FloorId), $"floor-{m.FloorId}");
-
-                        Context.Watch(newSensorActor);
-
                         _floorIdsToActorRefs.Add(m.FloorId, newSensorActor);
+                        Context.Watch(newSensorActor);
                         newSensorActor.Forward(m);
                     }
                     break;
